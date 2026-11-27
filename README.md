@@ -1,25 +1,42 @@
-# TaskFlow
+# TaskFlow — Productivity Dashboard
 
-A polished React and TypeScript productivity dashboard. It demonstrates responsive UI design, client-side state management, persistence with `localStorage`, search/filter interactions, modal form handling, automated tests, and a dark theme.
+> A focused, responsive task-management dashboard built to demonstrate production-minded React engineering.
 
-## Features
+[Live demo](https://mohan2-hash.github.io/taskflow-dashboard/) · [Source code](https://github.com/mohan2-hash/taskflow-dashboard)
 
-- Create, search, filter, and complete tasks
-- Persist tasks locally between browser sessions
-- Filter tasks by workflow status
-- Responsive dashboard with light/dark theme
-- Accessible labels and semantic controls
-- Automated unit tests for task filtering and completion
-- GitHub Actions workflow that verifies tests and production builds on every push
+## Why this project
 
-## Architecture
+TaskFlow solves a simple but real workflow: capture work, find the next priority, and complete it without losing context. It is intentionally designed as a clean single-page experience for an individual workspace.
+
+## What you can do
+
+- Create tasks with a title, description, priority, and workflow status
+- Search across task names, descriptions, and tags
+- Filter the workspace by Backlog, In progress, or Done
+- Mark work complete and see dashboard metrics update immediately
+- Keep tasks between sessions using browser `localStorage`
+- Switch between light and dark themes
+- Use the app comfortably on desktop and mobile layouts
+
+## Tech stack
+
+| Area | Tools |
+| --- | --- |
+| Front end | React, TypeScript, Vite |
+| UI | CSS, Lucide icons, responsive layout |
+| State | React hooks + browser localStorage |
+| Quality | Vitest unit tests, GitHub Actions, GitHub Pages |
+
+## Engineering notes
+
+The UI stays separate from the task-domain logic. `task-utils.ts` contains the tested functions for filtering and completing tasks, while the React components focus on presentation and interaction.
 
 ```text
-React UI (App + components)
-        │
-        ├── task-utils.ts: tested filter/completion business logic
-        ├── localStorage: browser persistence
-        └── Vite: development server and production build
+React interface
+├── App.tsx         dashboard state and interactions
+├── task-utils.ts   tested task operations
+├── localStorage    browser persistence
+└── GitHub Pages    automated production deployment
 ```
 
 ## Run locally
@@ -29,11 +46,19 @@ pnpm install
 pnpm dev
 ```
 
-Run automated checks with `pnpm test` and create a deployable build with `pnpm build`.
+Run checks before publishing changes:
 
-## Portfolio checklist before publishing
+```bash
+pnpm test
+pnpm build
+```
 
-- Deploy to Vercel or Netlify
-- Add 2–3 screenshots/GIFs to this README
-- Add a screenshot or short demo GIF after deployment
-- Upgrade `localStorage` to a real API/database in a future full-stack version
+## Future improvements
+
+- Connect authenticated users to a PostgreSQL-backed API
+- Add due dates, recurring tasks, and drag-and-drop planning
+- Add team workspaces and activity history
+
+---
+
+Built by [Mohan Vegi](https://github.com/mohan2-hash) as part of a job-ready full-stack portfolio.
